@@ -11,16 +11,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # 🔄 BUILD STAGE: BluesClues-Web
   bluescluesweb:
     name: Build BluesClues-Web
     uses: ./.github/workflows/front-end-workflow.yml
     with:
       system-dir: BluesClues-Web
-      sonar-project-key: Tribe4-Frontend_Web_BluesClues-Web
-    secrets: inherit
+      sonar-project-key: Tribe4_Web_BluesClues-Web
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  # 🚀 DEPLOY STAGE: BluesClues-Web
   deploy-staging-bluescluesweb:
     name: Deploy Staging — BluesClues-Web
     needs: bluescluesweb
